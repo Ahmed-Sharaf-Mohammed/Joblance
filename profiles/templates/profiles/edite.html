@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/sty.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>EditeProfile</title>
+</head>
+<body>
+    <center>
+
+        <div style="margin-bottom: 50px;" class="box">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+               
+                <div class="upload">
+                    <img id="imageblock" src="{{request.user.profile.image.url}}" >
+                   <div class="round">
+                     
+                     <i class="fa fa-camera" style="color:black"></i>
+                
+                    </div>
+                    {{ profileform.image }}
+                </div>
+            <br/>
+            <br/>
+                  
+             <label class="small">UserName</label>
+             {{ userform.username }}
+             <label class="small">Email</label>
+             {{ userform.email }}
+             <label class="small">Date of birth</label><br/>
+             <br/>
+             {{ profileform.dob }}
+             <br/>
+             <br/>
+             <label class="small">PhoneNumber</label>
+             {{ profileform.phone_number }}
+             
+             <label class="small">City</label>
+             {{ profileform.city }}
+             <label class="small">Gender</label>
+             {{ profileform.gender }}
+             <label class="small">Education</label>
+             {{ profileform.education }}
+             <label class="small">Language</label>
+             {{ profileform.language }}
+             <label class="small">Experience</label>
+             {{ profileform.experience }}
+             <label class="small">Technical Skills</label>
+             {{ profileform.tecskill}}
+             <label class="small">Soft Skills</label>
+             {{ profileform.softskill }}
+             <label class="small">Bio</label>
+             {{ profileform.bio }}
+            <br/>
+             <br/>
+             <button type="submit" style="float: left;margin: 10px 0 0 18.2%;">UP DATE</button>
+            
+            </form>
+
+
+            <a href="{% url 'profiles:profile' %}">
+             <button style="float: right;margin: 10px 18.2% 0 0;">BACK</button>
+            </a>
+         </div>
+       
+    </center>
+</body>
+</html>

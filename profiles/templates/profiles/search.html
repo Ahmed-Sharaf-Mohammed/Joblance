@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>User Search</title>
+</head>
+
+<body>
+  <form method="GET">
+    <input type="text" name="q" placeholder="Search users">
+    <button type="submit">Search</button>
+  </form>
+  {% if users %}
+  <ul>
+    {% for user in users %}
+    <li>{{ user.fname }} {{ user.lname }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No users found.</p>
+  {% endif %}
+</body>
+
+</html>
+This template displays a search form with a text input and a submit button. It then checks if the users queryset is not
+empty, and if so, loops over the users and displays their first and last names in an unordered list. If users is empty,
+it displays a message saying no users were found.

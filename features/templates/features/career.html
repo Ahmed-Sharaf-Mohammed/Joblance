@@ -1,0 +1,464 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Advice</title>
+    <!-- Font Awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/craftsmen.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        section {
+            height: 100vh;
+            width: 100%;
+            display: grid;
+            place-items: center;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            width: 100%;
+            padding: 0 1em 1em 1em;
+            text-align: center;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            padding: 2em 1.5em;
+            background: linear-gradient(#ffffff 50%, #388087 50%);
+            background-size: 100% 200%;
+            background-position: 0 2.5%;
+            border-radius: 5px;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        h2 {
+            font-size: 50px;
+            font-weight: 600;
+            color: #388087;
+            margin: 1em 0;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #388087;
+            margin: 1em 0;
+        }
+
+        p {
+            color: #575a7b;
+            font-size: 15px;
+            line-height: 1.6;
+            letter-spacing: 0.03em;
+        }
+
+        .icon-wrapper {
+            background-color: #388087;
+            position: relative;
+            margin: auto;
+            font-size: 30px;
+            height: 2.5em;
+            width: 2.5em;
+            color: #ffffff;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            transition: 0.5s;
+        }
+
+        .card:hover {
+            background-position: 0 100%;
+        }
+
+        .card:hover .icon-wrapper {
+            background-color: #ffffff;
+            color: #388087;
+        }
+
+        .card:hover h3 {
+            color: #ffffff;
+        }
+
+        .card:hover p {
+            color: #f0f0f0;
+        }
+
+        @media screen and (min-width: 768px) {
+            section {
+                padding: 0 2em;
+            }
+
+            .column {
+                flex: 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            section {
+                padding: 1em 3em;
+            }
+
+            .column {
+                flex: 0 0 33.33%;
+                max-width: 33.33%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <Header>
+        <div class="container">
+            <a href="{% url 'pages:index' %}" class="logo">
+                <h2 style="color: #fff;">Joblance</h2>
+            </a>
+            <ul class="links">
+                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                <li><a href="{% url 'jobs:job_list' %}">Browse Jobs</a></li>
+                <li><a href="{% url 'profiles:others' %}">Hire Now</a></li>
+                <li>
+                    <a href="#" class="io">More</a>
+                    <!-- Start Megamenu -->
+                    <div class="mega_menu">
+                        <div class="image">
+                            <img src="{% static 'img/images/megamenu.png' %}" alt="">
+                        </div>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'jobs:add_job' %}"><i class="far fa-clipboard fa-fw"></i>Post a job</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:AboutUs' %}"><i class="far fa-chart-bar fa-fw"></i>About Us</a>
+                            </li>
+                            
+                            <li>
+                                <a href="{% url 'features:career' %}"><i class="far fa-comments fa-fw"></i>Career Advices</a>
+                             </li>
+                        </ul>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'features:craftsmen' %}"><i class="far fa-building fa-fw"></i>Craftsmen</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'pages:feedback' %}"><i class="far fa-check-circle fa-fw"></i>Send
+                                    feedback</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:interview' %}"><i class="far fa-comments fa-fw"></i>Interview Tips</a>
+                             </li>
+                        </ul>
+                    </div>
+                    <!-- End Megamenu -->
+                </li>
+
+            </ul>
+
+
+            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                <div class="Appointment">
+                    {% if request.user.is_authenticated %}
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'profiles:profile' %}" style="float: right;">profile</a>
+                    </div>
+
+                    {% else %}
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'registration:signin' %}" style="float: right;">Login</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+
+    </Header>
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Career Advices</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    <br>
+    <br>
+    <br>
+
+    <section>
+        <div class="row">
+            <div class="column">
+                <div class="card">
+
+                    <div class="icon-wrapper">
+                        <span class="fa">1</span>
+                    </div>
+                    <h3>Identify your strengths and interests</h3>
+                    <p>
+                        To build a successful career, it's important to understand your own strengths and interests.
+                        Take the time to reflect on what you're good at and what motivates you.
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <span class="fa">2</span>
+                    </div>
+                    <h3>Set goals</h3>
+                    <p>
+                        Once you've identified your strengths and interests, set long-term and short-term goals for your
+                        career.
+                        This will help you stay focused and motivated as you work towards achieving them.
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <span class="fa">3</span>
+                    </div>
+                    <h3>Network</h3>
+                    <p>
+                        Networking is an important aspect of building a successful career. Make connections with people
+                        in your industry,
+                        attend networking events, and use social media to connect with professionals in your field.
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <span class="fa">4</span>
+                    </div>
+                    <h3>Continuously learn and improve</h3>
+                    <p>
+                        The job market is constantly evolving, so it's important to stay up-to-date with new
+                        technologies and trends in your industry.
+                        Attend conferences, take courses or online training, and read industry publications to stay
+                        informed.
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <span class="fa">5</span>
+                    </div>
+                    <h3>Don't be afraid to take risks</h3>
+                    <p>
+                        Sometimes taking risks can lead to unexpected opportunities and growth in your career.
+                        Be open to new challenges and opportunities, even if they seem daunting at first.
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <span class="fa">6</span>
+                    </div>
+                    <h3>Build a strong personal brand</h3>
+                    <p>
+                        Your personal brand is how you present yourself to the world, both online and offline. Make sure
+                        your image is professional
+                        and consistent across all platforms, such as social media, your resume, and your portfolio.
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <span class="fa">7</span>
+                    </div>
+                    <h3>Develop a Growth Mindset</h3>
+                    <p>
+                        Embrace challenges and see failure as an opportunity to learn and grow. People with a growth
+                        mindset
+                        tend to be more resilient and adaptable, which can lead to greater success in their careers.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <span class="fa">8</span>
+                    </div>
+                    <h3>Focus on Developing Transferable Skills</h3>
+                    <p>
+                        In today's rapidly changing job market, it's important to focus on developing transferable
+                        skills that can be applied across different industries and roles. Some examples of transferable
+                        skills include communication, problem-solving, time management, and leadership.
+                        By focusing on developing these skills, you can increase your marketability and adaptability in
+                        the job market.
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <span class="fa">9</span>
+                    </div>
+                    <h3>Find a Mentor or Coach</h3>
+                    <p>
+                        Having a mentor or coach can provide valuable guidance and support as you navigate your career
+                        path. Look for someone who has experience in the field you are interested in and can offer
+                        insights and advice on how to succeed. They can also help you identify
+                        areas for improvement and provide constructive feedback to help you grow professionally.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div class="spikes"></div>
+
+<!--Start Footer-->
+<footer>
+    <div class="container">
+
+
+        <div class="box">
+            <h3 style="color: #fff;">Joblance</h3>
+            <br>
+            <ul class="social">
+                <li>
+                    <a href="#" class="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <p class="text">
+                A big world in a small place
+            </p>
+        </div>
+
+      
+        <div class="box">
+            <ul class="links">
+                <li>
+                    <a href="{% url 'features:members' %}">Members</a>
+                </li>
+                <li>
+                    <a href="{% url 'jobs:job_list' %}">Find a Job</a>
+                </li>
+                <li>
+                    <a href="{% url 'profiles:others' %}">Hire Now</a>
+                </li>
+                <li>
+                    <a href="{% url 'features:craftsmen' %}">Craftsmen</a>
+                </li>
+                <li>
+                    <a href="{% url 'pages:feedback' %}"><i></i>Feedback</a>
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="line">
+                <i class="fas fa-map-marker-alt fa-fw"></i>
+                <div class="info">
+                    Cairo, Egypt
+                </div>
+            </div>
+            <div class="line">
+                <i class="far fa-clock fa-fw"></i>
+                <div class="info">
+                    Joblance Team Working Hours: 08:00-04:00
+                </div>
+
+            </div>
+            <div class="line">
+                <i class="fas fa-phone-volume fa-fw"></i>
+                <div class="info">
+                    +201151261692
+                    +201095625946
+                </div>
+            </div>
+        </div>
+
+    </div>
+   <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="{% url 'features:members' %}" target="_blank">Joblance Team</a> </p>
+   
+
+</footer>
+<!--End Footer-->
+
+
+</body>
+
+</html>

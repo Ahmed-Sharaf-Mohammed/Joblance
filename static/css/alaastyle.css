@@ -1,0 +1,213 @@
+/*css vars*/
+
+@import url(../css/partials/variables.css);
+
+/*global styling*/
+
+@import url(../css/partials/_global.css);
+
+/*start navigation**/
+
+.header .main-menu .navbar .navbar-s {
+    padding: 0 2rem 0 5rem;
+}
+
+.header .main-menu .navbar {
+    padding: rem 20rem;
+}
+
+.header .main-menu .nav-item .nav-link {
+    font: normal 500 15px var(--roboto);
+    line-height: 2px;
+    text-transform: uppercase;
+    padding: 1.7rem;
+    color: rgb(0, 0, 0);
+}
+
+.header .main-menu .navbar-nav .active a {
+    background: linear-gradient(90deg, #797979, #cecece 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header .main-menu .navbar-nav a:hover {
+    background: linear-gradient(90deg, #797979, #cecece 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+/* end navigation */
+
+
+/* start banner */
+
+.site-main .site-banner .site-title h3 {
+    padding-top: 20%;
+    font-weight: 500;
+}
+
+
+.site-main .site-banner .site-title h1 {
+    font-size: 5rem;
+    margin-top: -5px;
+}
+
+.site-main .site-banner .site-title h4 {
+    font-size: 1.5rem;
+    margin-top: -50px;
+}
+
+.site-main .site-banner .site-title .banner-image>img {
+    padding: 100rem 0;
+    width: 90rem;
+}
+
+
+/*end banner*/
+
+
+/*start about*/
+
+.site-main .about {
+    padding: 8rem 5rem;
+}
+
+.site-main .about img{
+    margin-top: 50px;
+}
+
+.site-main .about .about-title h2>span {
+    display: block;
+    font: normal bold 49px/60px var(--roboto);
+    letter-spacing: 21px;
+}
+
+.site-main .about .about-title .paragraph>p {
+    padding: 0.4rem 0;
+    font-size: 20px;
+}
+
+
+/*end about*/
+
+
+/*start highlights*/
+
+.site-main .highlights-area {
+    padding: 7rem 2rem;
+}
+
+.site-main .highlights-area .highlights-title h1 {
+    font-size: 50px;
+    color: #388087;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.site-main .highlights-area .highlights-title h2 {
+    font-size: 35px;
+}
+
+.site-main>.highlights-area .highlights {
+    background-color: rgba(238, 236, 236, 0.5);
+    padding: 2rem 0;
+    width: 16rem;
+    margin: 2%;
+    transition: box-shadow.7s ease;
+    height: 34rem;
+}
+
+.site-main>.highlights-area .highlights:hover {
+    box-shadow: var(--box-shadow);
+}
+
+/*end highlights*/
+
+
+/*start pictures*/
+
+.site-main .pictures-area {
+    padding: 4rem 0;
+}
+
+.site-main .pictures-area .button-groub button {
+    background: transparent;
+    border: none;
+    font: normal 500 16px var(--roboto);
+    line-height: 130px;
+    text-transform: uppercase;
+}
+
+.site-main .pictures-area .button-groub button+button {
+    padding-left: 3rem;
+}
+
+.site-main .pictures-area .grid .pictures>.title h4 {
+    font: normal 700 25px var(--roboto);
+    line-height: 12px;
+}
+
+.site-main .pictures-area .grid .pictures .img a:hover img {
+    filter: brightness(1.1) drop-shadow(1px 8px 30px #b1afb1);
+}
+
+
+/*end area****/
+
+
+/*start they-say****/
+
+.site-main .they-say .they-say-title p {
+    padding: 1rem 7rem;
+}
+
+.site-main .they-say .person {
+    background: #BADFE7;
+    box-shadow: var(--box-shadow);
+    margin: 3rem 1rem;
+    height: 18rem;
+}
+
+.site-main .they-say .person .person-img {
+    padding: 2rem;
+}
+
+.site-main .they-say .person .person-say {
+    padding-top: 2rem;
+}
+
+.site-main .they-say .person .person-say h4 {
+    font-style: normal;
+    font-weight: 500;
+    font-family: var(--roboto);
+    font-size: 21px;
+    line-height: 20px;
+}
+
+.site-main .they-say .person .person-say p {
+    font-size: 14px;
+}
+
+.site-main .they-say .owl-carousel.owl-item {
+    display: flex;
+    justify-content: center;
+    padding: 0rem 3rem;
+}
+
+.site-main .they-say .owl-carousel .owl-dots .owl-dot.active span {
+    background-color: var(--primary-color2);
+    width: 15px;
+    height: 15px;
+}
+
+/*end they-say****/
+
+/*start footer**/
+
+footer.footer-area {
+    padding: 5rem 0;
+}
+
+/*end footer****/

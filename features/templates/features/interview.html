@@ -1,0 +1,458 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career Advice</title>
+  <!-- Font Awesome CDN-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/craftsmen.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    section {
+      height: 100vh;
+      width: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      width: 100%;
+      padding: 0 1em 1em 1em;
+      text-align: center;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      padding: 2em 1.5em;
+      background: linear-gradient(#ffffff 50%, #388087 50%);
+      background-size: 100% 200%;
+      background-position: 0 2.5%;
+      border-radius: 5px;
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    h2 {
+      font-size: 50px;
+      font-weight: 600;
+      color: #388087;
+      margin: 1em 0;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #388087;
+      margin: 1em 0;
+    }
+
+    p {
+      color: #575a7b;
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: 0.03em;
+    }
+
+    .icon-wrapper {
+      background-color: #388087;
+      position: relative;
+      margin: auto;
+      font-size: 30px;
+      height: 2.5em;
+      width: 2.5em;
+      color: #ffffff;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      transition: 0.5s;
+    }
+
+    .card:hover {
+      background-position: 0 100%;
+    }
+
+    .card:hover .icon-wrapper {
+      background-color: #ffffff;
+      color: #388087;
+    }
+
+    .card:hover h3 {
+      color: #ffffff;
+    }
+
+    .card:hover p {
+      color: #f0f0f0;
+    }
+
+    @media screen and (min-width: 768px) {
+      section {
+        padding: 0 2em;
+      }
+
+      .column {
+        flex: 0 50%;
+        max-width: 50%;
+      }
+    }
+
+    @media screen and (min-width: 992px) {
+      section {
+        padding: 1em 3em;
+      }
+
+      .column {
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <Header>
+    <div class="container">
+      <a href="{% url 'pages:index' %}" class="logo">
+        <h2 style="color: #fff;">Joblance</h2>
+      </a>
+      <ul class="links">
+        <li><a href="{% url 'pages:home' %}">Home</a></li>
+        <li><a href="{% url 'jobs:job_list' %}">Browse Jobs</a></li>
+        <li><a href="{% url 'profiles:others' %}">Hire Now</a></li>
+        <li>
+          <a href="#" class="io">More</a>
+          <!-- Start Megamenu -->
+          <div class="mega_menu">
+            <div class="image">
+                <img src="{% static 'img/images/megamenu.png' %}" alt="">
+            </div>
+            <ul class="links_one">
+                <li>
+                    <a href="{% url 'jobs:add_job' %}"><i class="far fa-clipboard fa-fw"></i>Post a job</a>
+                </li>
+                <li>
+                    <a href="{% url 'features:AboutUs' %}"><i class="far fa-chart-bar fa-fw"></i>About Us</a>
+                </li>
+                
+                <li>
+                    <a href="{% url 'features:career' %}"><i class="far fa-comments fa-fw"></i>Career Advices</a>
+                 </li>
+            </ul>
+            <ul class="links_one">
+                <li>
+                    <a href="{% url 'features:craftsmen' %}"><i class="far fa-building fa-fw"></i>Craftsmen</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'pages:feedback' %}"><i class="far fa-check-circle fa-fw"></i>Send
+                        feedback</a>
+                </li>
+                <li>
+                    <a href="{% url 'features:interview' %}"><i class="far fa-comments fa-fw"></i>Interview Tips</a>
+                 </li>
+            </ul>
+        </div>
+          <!-- End Megamenu -->
+        </li>
+
+      </ul>
+
+
+      <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+        <div class="Appointment">
+          {% if request.user.is_authenticated %}
+          <div class="d-none d-lg-block">
+            <a class="boxed-btn3" href="{% url 'profiles:profile' %}" style="float: right;">profile</a>
+          </div>
+
+          {% else %}
+          <div class="d-none d-lg-block">
+            <a class="boxed-btn3" href="{% url 'registration:signin' %}" style="float: right;">Login</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+
+    </div>
+
+  </Header>
+
+  <!-- bradcam_area  -->
+  <div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="bradcam_text">
+            <h3>Interview Tips</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ bradcam_area  -->
+  <br>
+  <br>
+  <br>
+
+  <section>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+
+          <div class="icon-wrapper">
+            <span class="fa">1</span>
+          </div>
+          <h3>Research the company</h3>
+          <p>
+            Before your interview, make sure you research the company and the industry they operate in.
+            This will help you understand their mission, values and goals.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="icon-wrapper">
+            <span class="fa">2</span>
+          </div>
+          <h3>Prepare answers to common interview questions</h3>
+          <p>
+            There are some questions that are commonly asked during interviews, such as "What are your strengths and
+            weaknesses?" or "Why do you want to work for this company?".
+            Preparing your answers in advance can help you feel more confident during the interview.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="icon-wrapper">
+            <span class="fa">3</span>
+          </div>
+          <h3>Dress appropriately</h3>
+          <p>
+            Make sure you dress professionally for the interview. This will show that you take the opportunity seriously
+            and are prepared to represent yourself in a professional manner.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="icon-wrapper">
+            <span class="fa">4</span>
+          </div>
+          <h3>Arrive early</h3>
+          <p>
+            It's always better to arrive early than late. Plan to arrive at least 10-15 minutes
+            before your scheduled interview time.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="icon-wrapper">
+            <span class="fa">5</span>
+          </div>
+          <h3>Be confident and personable</h3>
+          <p>
+            During the interview, be confident, friendly and engaging. Smile, maintain eye contact and speak clearly.
+            Show your enthusiasm for the position and the company.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="icon-wrapper">
+            <span class="fa">6</span>
+          </div>
+          <h3>Ask questions</h3>
+          <p>
+            At the end of the interview, the interviewer will likely ask if you have any questions. This is your chance
+            to learn more about the company and the position.
+            Asking thoughtful questions shows that you're interested and invested in the opportunity.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="column">
+        <div class="card">
+          <div class="icon-wrapper">
+            <span class="fa">8</span>
+          </div>
+          <h3>Provide specific examples</h3>
+          <p>
+            When answering interview questions, try to provide specific examples from your past experiences to support
+            your responses.
+            This will help demonstrate your skills and abilities.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="icon-wrapper">
+            <span class="fa">7</span>
+          </div>
+          <h3>Follow up</h3>
+          <p>
+            After the interview, send a thank-you email or note to the interviewer.
+            This is a great way to express your gratitude for the opportunity and reiterate your interest in the
+            position.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="icon-wrapper">
+            <span class="fa">9</span>
+          </div>
+          <h3>Be yourself</h3>
+          <p>
+            Finally, remember to be yourself during the interview. While it's important to present yourself
+            professionally, it's also important to let your personality shine through so that the interviewer(s)
+            can get a sense of who you are as a person.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <div class="spikes"></div>
+
+<!--Start Footer-->
+<footer>
+  <div class="container">
+
+
+      <div class="box">
+          <h3 style="color: #fff;">Joblance</h3>
+          <br>
+          <ul class="social">
+              <li>
+                  <a href="#" class="facebook">
+                      <i class="fab fa-facebook-f"></i>
+                  </a>
+              </li>
+              <li>
+                  <a href="#" class="twitter">
+                      <i class="fab fa-twitter"></i>
+                  </a>
+              </li>
+              <li>
+                  <a href="#" class="youtube">
+                      <i class="fab fa-youtube"></i>
+                  </a>
+              </li>
+          </ul>
+          <br>
+          <p class="text">
+              A big world in a small place
+          </p>
+      </div>
+
+    
+      <div class="box">
+          <ul class="links">
+              <li>
+                  <a href="{% url 'features:members' %}">Members</a>
+              </li>
+              <li>
+                  <a href="{% url 'jobs:job_list' %}">Find a Job</a>
+              </li>
+              <li>
+                  <a href="{% url 'profiles:others' %}">Hire Now</a>
+              </li>
+              <li>
+                  <a href="{% url 'features:craftsmen' %}">Craftsmen</a>
+              </li>
+              <li>
+                  <a href="{% url 'pages:feedback' %}"><i></i>Feedback</a>
+              </li>
+          </ul>
+      </div>
+      <div class="box">
+          <div class="line">
+              <i class="fas fa-map-marker-alt fa-fw"></i>
+              <div class="info">
+                  Cairo, Egypt
+              </div>
+          </div>
+          <div class="line">
+              <i class="far fa-clock fa-fw"></i>
+              <div class="info">
+                  Joblance Team Working Hours: 08:00-04:00
+              </div>
+
+          </div>
+          <div class="line">
+              <i class="fas fa-phone-volume fa-fw"></i>
+              <div class="info">
+                  +201151261692
+                  +201095625946
+              </div>
+          </div>
+      </div>
+
+  </div>
+ <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="{% url 'features:members' %}" target="_blank">Joblance Team</a> </p>
+ 
+
+</footer>
+<!--End Footer-->
+
+
+</body>
+
+</html>

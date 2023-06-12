@@ -1,0 +1,299 @@
+{% load static %}
+{% load bootstrap4 %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Joblance</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css'%}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css'%}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css'%}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css'%}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css'%}">
+    <link rel="stylesheet" href="{% static 'css/gijgo.css'%}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.css'%}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+
+
+
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <!--main Templete-3 Css File-->
+    <link rel="stylesheet" href="{% static 'css/morsy.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/morsy.min.css' %}">
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <Header>
+        <div class="container">
+            <a href="{% url 'pages:index' %}" class="logo">
+                <h2 style="color: #fff;">Joblance</h2>
+            </a>
+            <ul class="links">
+                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                <li><a href="{% url 'jobs:job_list' %}">Browse Jobs</a></li>
+                <li><a href="{% url 'profiles:others' %}">Hire Now</a></li>
+                <li>
+                    <a href="#" class="io">More</a>
+                    <!-- Start Megamenu -->
+                    <div class="mega_menu">
+                        <div class="image">
+                            <img src="{% static 'img/images/megamenu.png' %}" alt="">
+                        </div>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'jobs:add_job' %}"><i class="far fa-clipboard fa-fw"></i>Post a job</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:AboutUs' %}"><i class="far fa-chart-bar fa-fw"></i>About
+                                    Us</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'features:career' %}"><i class="far fa-comments fa-fw"></i>Career
+                                    Advices</a>
+                            </li>
+                        </ul>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'features:craftsmen' %}"><i
+                                        class="far fa-building fa-fw"></i>Craftsmen</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'pages:feedback' %}"><i class="far fa-check-circle fa-fw"></i>Send
+                                    feedback</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:interview' %}"><i class="far fa-comments fa-fw"></i>Interview
+                                    Tips</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Megamenu -->
+                </li>
+
+            </ul>
+            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                <div class="Appointment">
+
+                    {% if request.user.is_authenticated %}
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'registration:logout' %}" style="float: right;">Logout</a>
+                    </div>
+                    <div class="d-none d-lg-block">
+                        <a href="{% url 'profiles:profile' %}" class="boxed-btn3">Profile</a>
+                    </div>
+                    {% else %}
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'registration:signin' %}" style="float: right;">Login</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </Header>
+    <!-- header-end -->
+    <main>
+        <!-- bradcam_area  -->
+        <div class="bradcam_area bradcam_bg_1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="bradcam_text">
+                            <h3>Add New Job</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ bradcam_area  -->
+
+        <div class="job_details_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="apply_job_form white-bg" style="height: 1000px; overflow: auto;">
+                            <h4>Post New Job</h4>
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% bootstrap_form post_form %}
+                                {% buttons %}
+                                <button class="boxed-btn3 w-100" type="submit">Post Now</button>
+                                {% endbuttons %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="spikes"></div>
+
+
+
+<!--Start Footer-->
+<footer>
+    <div class="container">
+
+
+        <div class="box">
+            <h3 style="color: #fff;">Joblance</h3>
+            <br>
+            <ul class="social">
+                <li>
+                    <a href="#" class="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <p class="text">
+                A big world in a small place
+            </p>
+        </div>
+
+      
+        <div class="box">
+            <ul class="links">
+                <li>
+                    <a href="{% url 'features:members' %}">Members</a>
+                </li>
+                <li>
+                    <a href="{% url 'jobs:job_list' %}">Find a Job</a>
+                </li>
+                <li>
+                    <a href="{% url 'profiles:others' %}">Hire Now</a>
+                </li>
+                <li>
+                    <a href="{% url 'features:craftsmen' %}">Craftsmen</a>
+                </li>
+                <li>
+                    <a href="{% url 'pages:feedback' %}"><i></i>Feedback</a>
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="line">
+                <i class="fas fa-map-marker-alt fa-fw"></i>
+                <div class="info">
+                    Cairo, Egypt
+                </div>
+            </div>
+            <div class="line">
+                <i class="far fa-clock fa-fw"></i>
+                <div class="info">
+                    Joblance Team Working Hours: 08:00-04:00
+                </div>
+
+            </div>
+            <div class="line">
+                <i class="fas fa-phone-volume fa-fw"></i>
+                <div class="info">
+                    +201151261692
+                    +201095625946
+                </div>
+            </div>
+        </div>
+
+    </div>
+   <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="{% url 'features:members' %}" target="_blank">Joblance Team</a> </p>
+   
+
+</footer>
+<!--End Footer-->
+
+
+    <!-- link that opens popup -->
+    <!-- JS here -->
+    <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/ajax-form.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/scrollIt.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- <script src="js/gijgo.min.js"></script> -->
+    <script src="{% static 'js/range.js' %}"></script>
+
+
+
+    <!--contact js-->
+    <script src="{% static 'js/contact.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'js/jquery.form.js' %}"></script>
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/mail-script.js' %}"></script>
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+    <script>
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 24600,
+                values: [750, 24600],
+                slide: function (event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1] + "/ Year");
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+                " - $" + $("#slider-range").slider("values", 1) + "/ Year");
+        });
+    </script>
+</body>
+
+</html>

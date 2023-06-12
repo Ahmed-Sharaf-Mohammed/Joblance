@@ -1,0 +1,55 @@
+.iMg{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.wid{
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    /* width: 800px; */
+    /* margin-bottom: 0.5rem; */
+    
+}
+.wid h3{
+    margin-bottom: 2rem;
+}
+.row {
+    border-bottom: 3px solid black; /* Add a solid black line to the bottom of the row */
+    padding-bottom: 20px; /* Add some padding to separate the line from the content */
+  }
+
+/* Second row */
+.ccc {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+ .ccc .col-md-4 {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  form-control {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+
+  

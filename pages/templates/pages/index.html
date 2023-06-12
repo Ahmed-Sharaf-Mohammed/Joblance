@@ -1,0 +1,516 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobLance</title>
+    <link rel="icon"
+        href="../Main/img/png-file-svg-white-headphone-png-icon-3090554-pngtube-headphones-icon-png-920_916.jpg" />
+
+    <!--google font link-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+
+    <!--bootsrap css file-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}" />
+    <!--fontawessome css file-->
+    <link rel="stylesheet" href="{% static 'css/all.min.css'%}" />
+    <!--magnific pop up-->
+    <link rel="stylesheet" href="{% static 'vendor/Magnific-Popup/dist/magnific-popup.css'%}" />
+    <!--owl carousel files-->
+    <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.theme.default.min.css'%}" />
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet" />
+    <!--custom css file-->
+    <link rel="stylesheet" href="{% static 'css/alaastyle.css'%}" />
+    <!--responsive css file-->
+    <link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+
+
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/morsy.css' %}">
+    <link rel="stylesheet" href="{% static 'css/morsy.min.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <Header>
+        <div class="container">
+            <a href="{% url 'pages:index' %}" class="logo">
+                <h2 style="color: #fff;">Joblance</h2>
+            </a>
+            <ul class="links">
+                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                <li><a href="{% url 'jobs:job_list' %}">Browse Jobs</a></li>
+                <li><a href="{% url 'profiles:others' %}">Hire Now</a></li>
+                <li>
+                    <a href="#" class="io">More</a>
+                    <!-- Start Megamenu -->
+                    <div class="mega_menu">
+                        <div class="image">
+                            <img src="{% static 'img/images/megamenu.png' %}" alt="">
+                        </div>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'jobs:add_job' %}"><i class="far fa-clipboard fa-fw"></i>Post a job</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:AboutUs' %}"><i class="far fa-chart-bar fa-fw"></i>About
+                                    Us</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'features:career' %}"><i class="far fa-comments fa-fw"></i>Career
+                                    Advices</a>
+                            </li>
+                        </ul>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'features:craftsmen' %}"><i
+                                        class="far fa-building fa-fw"></i>Craftsmen</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'pages:feedback' %}"><i class="far fa-check-circle fa-fw"></i>Send
+                                    feedback</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:interview' %}"><i class="far fa-comments fa-fw"></i>Interview
+                                    Tips</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Megamenu -->
+                </li>
+            </ul>
+            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                <div class="Appointment">
+
+                    {% if request.user.is_authenticated %}
+
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'registration:logout' %}" style="float: right;">Logout</a>
+                    </div>
+                    <div class="d-none d-lg-block">
+                        <a href="{% url 'profiles:profile' %}" class="boxed-btn3">Profile</a>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </Header>
+    <br>
+    <br>
+    <main class="site-main">
+
+        <!-- start heading -->
+        <section class="site-banner" data-aos="fade-up" data-aos-duration="500">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 site-title">
+                        <h3 class="title-text">WELCOME TO</h3>
+                        <h1 class="title-text text-uppercase">Joblance</h1>
+                        <h4 class="title-text text-uppercase">Let's start a new journey</h4>
+                        <div class="site-buttons">
+                            <div class="d-flex flex-row flex-wrap">
+                                {% if request.user.is_authenticated %}
+                                <a href="{% url 'jobs:job_list' %}"><button type="button"
+                                        class="btn button primary-button mr-4 text-uppercase">Browse new
+                                        jobs</button></a>
+                                <a href="{% url 'jobs:add_job' %}"><button type="button"
+                                        class="btn button secondary-button text-uppercase"> Post a job </button></a>
+                                {% else %}
+                                <a href="{% url 'registration:signup' %}"><button type="button"
+                                        class="btn button primary-button mr-4 text-uppercase">Register Now</button></a>
+                                <a href="{% url 'registration:signin' %}"><button type="button"
+                                        class="btn button secondary-button text-uppercase"> Login </button></a>
+
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-lg-6 col-md-12">
+                        <img class="img-fluid" src="{% static 'img/banner/banner.png' %}" class="banner-image"
+                            alt="banner-img" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--end banner -->
+        <br><br>
+
+
+        <!-- start about   -->
+
+        <section id="About" class="about" data-aos="fade-down" data-aos-offset="500" data-aos-easing="ease-in-sine">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="about-image">
+                            <img src="{% static 'img/about.png' %}" alt="about" class="img-fluid" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 about-title">
+                        <h2 class="text-uppercase pt-5">
+                            <span>joblance</span>
+                        </h2>
+                        <div class="paragraph py-4 w-75 ">
+
+                            <p class="para font-roboto">
+                                It is an online platform designed to connect job seekers and employers. <br>
+                                It offers a wide range of features, including a craftsman page for skilled
+                                professionals,
+                                career advice for job seekers, interview tips to help candidates succeed in their job
+                                search,
+                                and a job posting section where employers can post job vacancies or hire freelancers.
+                                <br><br>
+                                With Joblance, businesses can find the right talent for their projects, and job seekers
+                                can
+                                browse through multiple job openings and apply for ones that match their skills and
+                                preferences.
+                                <br><br>
+                                Whether you're looking for full-time employment or freelance work, Joblance is the
+                                perfect platform
+                                to help you achieve your goals.
+                            </p>
+
+
+                        </div>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'profiles:others' %}"><button type="button"
+                                class="btn button primary-button text-uppercase"> Hire Now </button></a>
+                        {% else %}
+                        <a href="{% url 'registration:signup' %}"><button type="button"
+                                class="btn button primary-button text-uppercase"> Get Started </button></a>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- end about-->
+
+
+
+        <!--start highlights --------------------->
+        <section class="highlights-area" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center highlights-title">
+                        <h1><strong>How To Start?</strong> </h1> <br><br>
+                        <h2 class="text-uppercase title-text  ">1. Create your free account</h2>
+                        <p class="para font-roboto">
+                            All you need is your email address to create an account and start building your job post.
+                        </p>
+                    </div>
+                    <div class="col-lg-12 text-center highlights-title">
+                        <h2 class="text-uppercase title-text  ">2. Build your job post</h2>
+                        <p class="para font-roboto">
+                            Then just add a title, description, and location to your job post, and you're ready to go.
+                        </p>
+                    </div>
+                    <div class="col-lg-12 text-center highlights-title">
+                        <h2 class="text-uppercase title-text  ">3. Post your job </h2>
+                        <p class="para font-roboto">
+                            After you post your job use our state of the art tools to help you find your dream talent.
+                        </p>
+                    </div>
+                </div>
+                <br><br>
+
+
+
+                <!-------------------------------------end highlights --------------------->
+
+
+                <!--------------------start pictures area--------------------------->
+
+    <!--
+                <section id="Photos" class="pictures-area" data-aos="fade-up" data-aos-offset="500"
+                    data-aos-easing="ease-in-sine">
+                    <div class="container ">
+                        <div class="priject-title pb-5">
+                            <h1 class="text-uppercase title-h1 ">Craftsmen</h1>
+                        </div>
+                        <div class="button-groub">
+                            <button type="button" class="active" id="btn1">All</button>
+                            <button type="button" data-filter=".old">Group1</button>
+                            <button type="button" data-filter=".colored">Group2</button>
+
+                        </div>
+                        <div class="row grid">
+                            <div class="col-lg-4 col-md-6 col-sm-12 element-item old">
+                                <div class="pictures">
+                                    <div class="img">
+                                        <a class="test-popup-link" href="img/portfolio/old1.png">
+                                            <img src="{% static 'img/portfolio/old1.png' %}" alt="old1" /></a>
+                                    </div>
+                                    <div class="title py-4">
+                                        <h4 class="text-uppercase"></h4>
+                                        <span class="text-secondary"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 element-item old">
+                                <div class="pictures">
+                                    <div class="img">
+                                        <a class="test-popup-link" href="img/portfolio/old2.png">
+                                            <img src="{% static 'img/portfolio/old2.png' %}" alt="old2" /></a>
+                                    </div>
+                                    <div class="title py-4">
+                                        <h4 class="text-uppercase"></h4>
+                                        <span class="text-secondary"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 element-item old">
+                                <div class="pictures">
+                                    <div class="img">
+                                        <a class="test-popup-link" href="img/portfolio/old3.png">
+                                            <img src="{% static 'img/portfolio/old3.png' %}" alt="old3" /></a>
+                                    </div>
+                                    <div class="title py-4">
+                                        <h4 class="text-uppercase"></h4>
+                                        <span class="text-secondary"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 element-item colored">
+                                <div class="pictures">
+                                    <div class="img">
+                                        <a class="test-popup-link" href="img/portfolio/colored1.png">
+                                            <img src="{% static 'img/portfolio/colored1.png' %}" alt="colored1" /></a>
+                                    </div>
+                                    <div class="title py-4">
+                                        <h4 class="text-uppercase"></h4>
+                                        <span class="text-secondary"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 element-item colored">
+                                <div class="pictures">
+                                    <div class="img">
+                                        <a class="test-popup-link" href="img/portfolio/colored2.png">
+                                            <img src="{% static 'img/portfolio/colored2.png' %}" alt="colored2" /></a>
+                                    </div>
+                                    <div class="title py-4">
+                                        <h4 class="text-uppercase"></h4>
+                                        <span class="text-secondary"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 element-item colored">
+                                <div class="pictures">
+                                    <div class="img">
+                                        <a class="test-popup-link" href="img/portfolio/colored3.png">
+                                            <img src="{% static 'img/portfolio/colored3.png' %}" alt="colored3" /></a>
+                                    </div>
+                                    <div class="title py-4">
+                                        <h4 class="text-uppercase"></h4>
+                                        <span class="text-secondary"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+    -->
+        <!--------------------end pictures area-------------------------->
+
+                <section class="they-say" data-aos="fade-up" data-aos-offset="500" data-aos-easing="ease-in-sine">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-12">
+                        <div class="they-say-title">
+                            <h1 class="text-uppercase title-h1">Take a look at some of the traditional crafts at Joblance!</h1>
+                            <p class="para"> Hire one now! </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container carousel py-lg-5">
+                <div class="owl-carousel owl-theme">
+                    {% for worker in workers %}
+
+                    <div class="person row">
+                        <div class="col-lg-4 col-md-12 person-img">
+                            <img src="{{worker.image.url}}" alt="img1" />
+                        </div>
+                        <div class="col-lg-8 col-md-12 person-say">
+                            <a href="{% url 'features:craftsman_detail' craftsman_id=worker.id %}"><h4 class="text-uppercase">{{worker.name}}</h4></a>
+                            <p class="para">
+                                {{worker.description}}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section> 
+
+
+
+
+        <!--------------------start they say -------------------------->
+
+        <section class="they-say" data-aos="fade-up" data-aos-offset="500" data-aos-easing="ease-in-sine">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-12">
+                        <div class="they-say-title">
+                            <h1 class="text-uppercase title-h1">Change the wolrd in one tap</h1>
+                            <p class="para">
+                                Here's your chance to the world, get it now!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container carousel py-lg-5">
+                <div class="owl-carousel owl-theme">
+                    {% for job in jobs %}
+                    {% if job.owner == user %}
+                    {{ continue }}
+                    {% else %}
+                    
+                    <div class="person row">
+                        <div class="col-lg-4 col-md-12 person-img">
+                            <img src="{% static 'img/testimonials/t15.jpg' %}" alt="img1" />
+                        </div>
+                        <div class="col-lg-8 col-md-12 person-say">
+                            <a href="{% url 'jobs:job_details' job.slug %}">
+                                <h4 class="text-uppercase">{{job.title}}</h4>
+                            </a>
+                            <p class="para">
+                                {{job.description}}
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!--------------------end they say-------------------------->
+
+    </main>
+
+    <div class="spikes"></div>
+
+   <!--Start Footer-->
+    <footer>
+        <div class="container">
+
+
+            <div class="box">
+                <h3 style="color: #fff;">Joblance</h3>
+                <br>
+                <ul class="social">
+                    <li>
+                        <a href="#" class="facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="youtube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </li>
+                </ul>
+                <br>
+                <p class="text">
+                    A big world in a small place
+                </p>
+            </div>
+
+          
+            <div class="box">
+                <ul class="links">
+                    <li>
+                        <a href="{% url 'features:members' %}">Members</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'jobs:job_list' %}">Find a Job</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'profiles:others' %}">Hire Now</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'features:craftsmen' %}">Craftsmen</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'pages:feedback' %}"><i></i>Feedback</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="box">
+                <div class="line">
+                    <i class="fas fa-map-marker-alt fa-fw"></i>
+                    <div class="info">
+                        Cairo, Egypt
+                    </div>
+                </div>
+                <div class="line">
+                    <i class="far fa-clock fa-fw"></i>
+                    <div class="info">
+                        Joblance Team Working Hours: 08:00-04:00
+                    </div>
+
+                </div>
+                <div class="line">
+                    <i class="fas fa-phone-volume fa-fw"></i>
+                    <div class="info">
+                        +201151261692
+                        +201095625946
+                    </div>
+                </div>
+            </div>
+
+        </div>
+       <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made<i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="{% url 'features:members' %}" target="_blank">Joblance Team</a> </p>
+    </footer>
+    <!--End Footer-->
+
+    <!--jquery bootstrap-->
+    <script src="{% static './js/jquery.3.4.1.js'%}"></script>
+    <!--bootsrap js file-->
+    <script src="{% static 'js/alaabootstrap.min.js'%}"></script>
+    <!--isotope js library-->
+    <script src="{% static 'vendor/isotope/isotope.min.js'%}"></script>
+    <!--magnific pop up -->
+    <script src="{% static 'vendor/Magnific-Popup/dist/jquery.magnific-popup.min.js'%}"></script>
+    <!--owl carousel js-->
+    <script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js'%}"></script>
+    <!--aos-->
+    <script src="{% static 'js/aos.js'%}"></script>
+    <!--custom js file-->
+    <script src="{% static 'js/alaamain.js'%}"></script>
+</body>
+
+</html>

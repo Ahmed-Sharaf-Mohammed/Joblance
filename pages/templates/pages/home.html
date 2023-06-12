@@ -1,0 +1,281 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobLance</title>
+    <link rel="icon"
+        href="../Main/img/png-file-svg-white-headphone-png-icon-3090554-pngtube-headphones-icon-png-920_916.jpg" />
+
+    <!--google font link-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+
+    <!--bootsrap css file-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}" />
+    <!--fontawessome css file-->
+    <link rel="stylesheet" href="{% static 'css/all.min.css'%}" />
+    <!--magnific pop up-->
+    <link rel="stylesheet" href="{% static 'vendor/Magnific-Popup/dist/magnific-popup.css'%}" />
+    <!--owl carousel files-->
+    <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.theme.default.min.css'%}" />
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet" />
+    <!--custom css file-->
+    <link rel="stylesheet" href="{% static 'css/alaastyle.css'%}" />
+    <!--responsive css file-->
+    <link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+
+
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/morsy.css' %}">
+    <link rel="stylesheet" href="{% static 'css/morsy.min.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <Header>
+        <div class="container">
+            <a href="{% url 'pages:index' %}" class="logo">
+                <h2 style="color: #fff;">Joblance</h2>
+            </a>
+
+            <ul class="links">
+                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                <li><a href="{% url 'jobs:job_list' %}">Browse Jobs</a></li>
+                <li><a href="{% url 'profiles:others' %}">Hire Now</a></li>
+                <li>
+                    <a href="#" class="io">More</a>
+                    <!-- Start Megamenu -->
+                    <div class="mega_menu">
+                        <div class="image">
+                            <img src="{% static 'img/images/megamenu.png' %}" alt="">
+                        </div>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'jobs:add_job' %}"><i class="far fa-clipboard fa-fw"></i>Post a job</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:AboutUs' %}"><i class="far fa-chart-bar fa-fw"></i>About
+                                    Us</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'features:career' %}"><i class="far fa-comments fa-fw"></i>Career
+                                    Advices</a>
+                            </li>
+                        </ul>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'features:craftsmen' %}"><i
+                                        class="far fa-building fa-fw"></i>Craftsmen</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'pages:feedback' %}"><i class="far fa-check-circle fa-fw"></i>Send
+                                    feedback</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:interview' %}"><i class="far fa-comments fa-fw"></i>Interview
+                                    Tips</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Megamenu -->
+                </li>
+
+            </ul>
+            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                <div class="Appointment">
+
+                    {% if request.user.is_authenticated %}
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'registration:logout' %}" style="float: right;">Logout</a>
+                    </div>
+                    <div class="d-none d-lg-block">
+                        <a href="{% url 'profiles:profile' %}" class="boxed-btn3">Profile</a>
+                    </div>
+                    {% else %}
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'registration:signin' %}" style="float: right;">Login</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </Header>
+
+
+    <!-- The part responsible for the error messages -->
+    <div id="mydiv">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <script>
+            setTimeout(() => {
+                const alerts = document.querySelectorAll(".alert");
+                alerts.forEach(alert => {
+                    alert.style.display = "none";
+                });
+            }, 4000);
+        </script>
+    </div>
+    <!-- The end of the part responsible for the appearance of error messages -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Start Now!</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="features" id="features">
+
+        <div class="container">
+
+            <div class="box  quality">
+                <div class="image">
+                    <img src="{% static 'img/images/postjob.jfif' %}" alt="">
+                </div>
+                <br>
+                <div class="content">
+                    <h2>Providing job?</h2>
+                    <p>If you have a job and looking for a performer, post your job now!</p>
+                </div>
+                <a href="{% url 'job:add_job' %}">Post Job</a>
+            </div>
+
+            <div class="box time">
+                <div class="image">
+                    <img src="{% static 'img/images/findjob.png' %}" alt="">
+                </div>
+                <br>
+                <div class="content">
+                    <h2>Looking for a job?</h2>
+                    <p>If you are skilled enough to perform a job, search now!</p>
+                </div>
+                <a href="{% url 'job:job_list' %}">Find Job</a>
+            </div>
+
+            <div class="box passion">
+                <div class="image">
+                    <img src="{% static 'img/images/craftsman.png' %}" alt="">
+                </div>
+                <br><br>
+                <div class="content">
+                    <h2>Want a craftman?</h2>
+                    <p>Get the chance to visit the craftsmen world!</p>
+                </div>
+                <a href="{% url 'features:craftsmen' %}">Visit</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--End-->
+
+    <div class="spikes"></div>
+
+
+<!--Start Footer-->
+<footer>
+    <div class="container">
+
+
+        <div class="box">
+            <h3 style="color: #fff;">Joblance</h3>
+            <br>
+            <ul class="social">
+                <li>
+                    <a href="#" class="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <p class="text">
+                A big world in a small place
+            </p>
+        </div>
+
+      
+        <div class="box">
+            <ul class="links">
+                <li>
+                    <a href="{% url 'features:members' %}">Members</a>
+                </li>
+                <li>
+                    <a href="{% url 'jobs:job_list' %}">Find a Job</a>
+                </li>
+                <li>
+                    <a href="{% url 'profiles:others' %}">Hire Now</a>
+                </li>
+                <li>
+                    <a href="{% url 'features:craftsmen' %}">Craftsmen</a>
+                </li>
+                <li>
+                    <a href="{% url 'pages:feedback' %}"><i></i>Feedback</a>
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="line">
+                <i class="fas fa-map-marker-alt fa-fw"></i>
+                <div class="info">
+                    Cairo, Egypt
+                </div>
+            </div>
+            <div class="line">
+                <i class="far fa-clock fa-fw"></i>
+                <div class="info">
+                    Joblance Team Working Hours: 08:00-04:00
+                </div>
+
+            </div>
+            <div class="line">
+                <i class="fas fa-phone-volume fa-fw"></i>
+                <div class="info">
+                    +201151261692
+                    +201095625946
+                </div>
+            </div>
+        </div>
+
+    </div>
+   <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="{% url 'features:members' %}" target="_blank">Joblance Team</a> </p>
+   
+
+</footer>
+<!--End Footer-->
+
+</body>
+
+</html>

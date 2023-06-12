@@ -1,0 +1,181 @@
+body {
+    background-color: cadetblue;
+
+}
+
+*:focus {
+    outline: none;
+
+}
+
+.box {
+    box-sizing: border-box;
+    width: 800px;
+    height: 1650px;
+    border: 2px solid black;
+    box-shadow: -3px -3px 7px black 3px 3px 5px rgba(49, 104, 121, 0.288);
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 0px;
+    overflow: hidden;
+}
+
+img {
+    box-sizing: border-box;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0;
+    border: 1px solid black;
+    padding: 3px;
+    background-color: white;
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] ,
+input[type="date"]{
+    display: block;
+    box-sizing: border-box;
+    background: none;
+    color: dimgrey;
+    margin-bottom: 30px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus ,input[type="password"]:focus{
+    border-bottom: 2px solid;
+    border-bottom-right-radius: 20px;
+    color: black;
+    transition: 0.2 ease;
+}
+
+button {
+    padding: 0.8rem 2.2rem;
+    font-size: 16px;
+    line-height: 30px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: var(--roboto);
+    position: relative;
+    border-radius: 12px;
+    background-color: #388087;
+    border: none;
+    color: #F6F6F2;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 2px 2px;
+}
+
+button:hover {
+    background-color: var(--gradient-color);
+    color: #388087;
+    box-shadow: var(--box-shadow);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.upload {
+    width: 100px;
+    position: relative;
+    margin: auto;
+}
+
+.upload .round {
+    position: absolute;
+    bottom: 0;
+    right: -8px;
+    background: cadetblue;
+    width: 32px;
+    height: 32px;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+
+
+}
+
+.upload .round input[type="file"] {
+
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+
+
+}
+
+input[type=file]::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
+
+
+.small {
+    text-align: left;
+
+    margin: 40px;
+    margin-bottom: 30px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+
+}
+
+label {
+    text-align: left;
+}
+
+input#id_image {
+    
+    left: 82px;
+    right: 35px;
+    width: 17px;
+    height: 17px;
+    top: 135px;
+    bottom: 9px;
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+    display: flex;
+    cursor: pointer;
+}
+.cv_input{
+    position: absolute;
+    transform: scale(0.9);
+    opacity: 0;
+}
+.file_input{
+    position: absolute;
+    transform: scale(0.9);
+    opacity: 0;
+}
+

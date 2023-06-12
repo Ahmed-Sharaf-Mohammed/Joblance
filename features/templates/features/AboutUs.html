@@ -1,0 +1,331 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us </title>
+    <link rel="stylesheet" href="{% static 'css/craftsmen.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: poppins;
+        }
+
+        main {
+            border: 7px solid #388087;
+            margin: 70px;
+            padding: 70px;
+        }
+
+        #about-section {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 12%;
+            margin-top: -100px;
+            margin-bottom: -100px;
+        }
+
+        .about-left img {
+            width: 520px;
+            height: auto;
+            transform: translateY(50px);
+            margin-top: -130px;
+            margin-left: auto;
+        }
+
+        .about-right {
+            width: 54%;
+        }
+
+        .about-right ul li {
+            display: flex;
+            align-items: center;
+        }
+
+        .about-right h1 {
+            color: #388087;
+            font-size: 37px;
+            margin-bottom: 5px;
+        }
+
+        .about-right p {
+            color: #444;
+            line-height: 26px;
+            font-size: 15px;
+        }
+
+        .about-right .address {
+            margin: 25px 0;
+        }
+
+        .about-right .address ul li {
+            margin-bottom: 5px;
+        }
+
+        .address .address-logo {
+            margin-right: 15px;
+            color: #388087;
+        }
+
+        .address .saprater {
+            margin: 0 35px;
+        }
+
+        .about-right .expertise ul {
+            width: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .expertise h3 {
+            margin-bottom: 10px;
+        }
+
+        .expertise .expertise-logo {
+            font-size: 19px;
+            margin-right: 10px;
+            color: #388087;
+        }
+    </style>
+</head>
+
+<body>
+
+    <Header>
+        <div class="container">
+            <a href="{% url 'pages:index' %}" class="logo">
+                <h2 style="color: #fff;">Joblance</h2>
+            </a>
+            <ul class="links">
+                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                <li><a href="{% url 'jobs:job_list' %}">Browse Jobs</a></li>
+                <li><a href="{% url 'profiles:others' %}">Hire Now</a></li>
+                <li>
+                    <a href="#" class="io">More</a>
+                    <!-- Start Megamenu -->
+                    <div class="mega_menu">
+                        <div class="image">
+                            <img src="{% static 'img/images/megamenu.png' %}" alt="">
+                        </div>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'jobs:add_job' %}"><i class="far fa-clipboard fa-fw"></i>Post a job</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:AboutUs' %}"><i class="far fa-chart-bar fa-fw"></i>About Us</a>
+                            </li>
+                            
+                            <li>
+                                <a href="{% url 'features:career' %}"><i class="far fa-comments fa-fw"></i>Career Advices</a>
+                             </li>
+                        </ul>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'features:craftsmen' %}"><i class="far fa-building fa-fw"></i>Craftsmen</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'pages:feedback' %}"><i class="far fa-check-circle fa-fw"></i>Send
+                                    feedback</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:interview' %}"><i class="far fa-comments fa-fw"></i>Interview Tips</a>
+                             </li>
+                        </ul>
+                    </div>
+                    <!-- End Megamenu -->
+                </li>
+
+            </ul>
+
+
+            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                <div class="Appointment">
+                    {% if request.user.is_authenticated %}
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'profiles:profile' %}" style="float: right;">profile</a>
+                    </div>
+
+                    {% else %}
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'registration:signin' %}" style="float: right;">Login</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+    </Header>
+
+    <br>
+    <br>
+    <br>
+
+    <main>
+        <section id="about-section">
+            <!-- about left  -->
+            <div class="about-left">
+                <img src="{% static 'img/aboutUs.PNG' %}" alt="About Img" />
+            </div>
+
+            <!-- about right  -->
+            <div class="about-right">
+                <h1>About Us</h1>
+                <p>"<b>Joblance</b> is a platform that connects employers with skilled freelancers from various fields.
+                </p>
+                <p>
+                    Our mission is to bridge the gap
+                    between businesses in need of top-quality work and talented professionals who are seeking flexible
+                    work
+                    arrangements.
+                </p>
+                <p>
+                    At Joblance, we believe that every freelancer deserves access to fulfilling work opportunities, and
+                    every employer
+                    should have access to a diverse pool of talent.
+                </p>
+                <p>
+                    That's why we strive to provide a seamless, user-friendly experience for
+                    both employers and freelancers, ensuring that our clients receive the best possible outcomes from
+                    their
+                    projects."
+                </p>
+                <div class="address">
+                    <ul>
+                        <li>
+                            <span class="address-logo">
+                                <i class="fas fa-paper-plane"></i>
+                            </span>
+                            <p>Address</p>
+                            <span class="saprater">:</span>
+                            <p>Cairo, Egypt</p>
+                        </li>
+                        <li>
+                            <span class="address-logo">
+                                <i class="fas fa-phone-alt"></i>
+                            </span>
+                            <p>Phone N</p>
+                            <span class="saprater">:</span>
+                            <p>+20 333-555-7777</p>
+                        </li>
+                        <li>
+                            <span class="address-logo">
+                                <i class="far fa-envelope"></i>
+                            </span>
+                            <p>Email ID</p>
+                            <span class="saprater">:</span>
+                            <p>JoblanceTeam@gmail.com</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <br>
+    <br>
+    <br>
+    
+    <div class="spikes"></div>
+
+<!--Start Footer-->
+<footer>
+    <div class="container">
+
+
+        <div class="box">
+            <h3 style="color: #fff;">Joblance</h3>
+            <br>
+            <ul class="social">
+                <li>
+                    <a href="#" class="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <p class="text">
+                A big world in a small place
+            </p>
+        </div>
+
+      
+        <div class="box">
+            <ul class="links">
+                <li>
+                    <a href="{% url 'features:members' %}">Members</a>
+                </li>
+                <li>
+                    <a href="{% url 'jobs:job_list' %}">Find a Job</a>
+                </li>
+                <li>
+                    <a href="{% url 'profiles:others' %}">Hire Now</a>
+                </li>
+                <li>
+                    <a href="{% url 'features:craftsmen' %}">Craftsmen</a>
+                </li>
+                <li>
+                    <a href="{% url 'pages:feedback' %}"><i></i>Feedback</a>
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="line">
+                <i class="fas fa-map-marker-alt fa-fw"></i>
+                <div class="info">
+                    Cairo, Egypt
+                </div>
+            </div>
+            <div class="line">
+                <i class="far fa-clock fa-fw"></i>
+                <div class="info">
+                    Joblance Team Working Hours: 08:00-04:00
+                </div>
+
+            </div>
+            <div class="line">
+                <i class="fas fa-phone-volume fa-fw"></i>
+                <div class="info">
+                    +201151261692
+                    +201095625946
+                </div>
+            </div>
+        </div>
+
+    </div>
+   <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="{% url 'features:members' %}" target="_blank">Joblance Team</a> </p>
+   
+
+</footer>
+<!--End Footer-->
+
+
+
+</body>
+
+</html>

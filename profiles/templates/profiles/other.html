@@ -1,0 +1,458 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/mayarstyle.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <!--main Templete-3 Css File-->
+    <link rel="stylesheet" href="{% static 'css/morsy.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ratingOther.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/morsy.min.css' %}">
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <title>Profiles</title>
+</head>
+
+<body>
+    <Header>
+        <div class="container">
+            <a href="{% url 'pages:index' %}" class="logo">
+                <h2 style="color: #fff;">Joblance</h2>
+            </a>
+            <ul class="links">
+                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                <li><a href="{% url 'jobs:job_list' %}">Browse Jobs</a></li>
+                <li><a href="{% url 'profiles:others' %}">Hire Now</a></li>
+                <li>
+                    <a href="#" class="io">More</a>
+                    <!-- Start Megamenu -->
+                    <div class="mega_menu">
+                        <div class="image">
+                            <img src="{% static 'img/images/megamenu.png' %}" alt="">
+                        </div>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'jobs:add_job' %}"><i class="far fa-clipboard fa-fw"></i>Post a job</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:AboutUs' %}"><i class="far fa-chart-bar fa-fw"></i>About Us</a>
+                            </li>
+                            
+                            <li>
+                                <a href="{% url 'features:career' %}"><i class="far fa-comments fa-fw"></i>Career Advices</a>
+                             </li>
+                        </ul>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'features:craftsmen' %}"><i class="far fa-building fa-fw"></i>Craftsmen</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'pages:feedback' %}"><i class="far fa-check-circle fa-fw"></i>Send
+                                    feedback</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:interview' %}"><i class="far fa-comments fa-fw"></i>Interview Tips</a>
+                             </li>
+                        </ul>
+                    </div>
+                    <!-- End Megamenu -->
+                </li>
+            </ul>
+            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                <div class="Appointment">
+
+                    {% if request.user.is_authenticated %}
+                    <div class="d-none d-lg-block">
+                        <a href="{% url 'registration:logout' %}" class="boxed-btn3">Logout</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </Header>
+    <!--message section-->        
+    <div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <script>
+            setTimeout(() => {
+                $(".alert").alert("close");
+            }, 4000)
+        </script>
+    </div>
+    <!--message section-->
+    <section>
+        <center>
+            <div class="profile">
+
+                <div class="card">
+
+                    <div class="image">
+                        <img src="{{user.image.url }}" alt="face">
+                    </div>
+                    <div class="content">
+                        <h2>{{user.user}}</h2>
+                    </div>
+                    
+                    <div class="review-feedback BQ">
+                        <h4>Quality:</h4>
+                        <span class="fa {% if RAtingQuality == 0.5 %}fa-star-half-full {% elif RAtingQuality < 0.5 %}fa fa-star{% elif  RAtingQuality > 0.5 %}fa fa-star-full{% endif %}"></span>                    
+                        <span class="fa {% if RAtingQuality == 1.5 %}fa-star-half-full {% elif RAtingQuality < 1.5 %}fa fa-star{% elif  RAtingQuality > 1.5 %}fa fa-star-full{% endif %}"></span>                    
+                        <span class="fa {% if RAtingQuality == 2.5 %}fa-star-half-full {% elif RAtingQuality < 2.5 %}fa fa-star{% elif  RAtingQuality > 2.5 %}fa fa-star-full{% endif %}"></span>
+                        <span class="fa {% if RAtingQuality == 3.5 %}fa-star-half-full {% elif RAtingQuality < 3.5 %}fa fa-star{% elif  RAtingQuality > 3.5 %}fa fa-star-full{% endif %}"></span>
+                        <span class="fa {% if RAtingQuality == 4.5 %}fa-star-half-full {% elif RAtingQuality < 4.5 %}fa fa-star{% elif  RAtingQuality > 4.5 %}fa fa-star-full{% endif %}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{RAtingQuality | stringformat:".1f"}} / 5
+                    </div>
+                    
+                    <div class="review-feedback BS">
+                        <h4>Speed:</h4>
+                        <span class="fa {% if RAtingSpeed == 0.5 %}fa-star-half-full {% elif RAtingSpeed < 0.5 %}fa fa-star{% elif  RAtingSpeed > 0.5 %}fa fa-star-full{% endif %}"></span>                    
+                        <span class="fa {% if RAtingSpeed == 1.5 %}fa-star-half-full {% elif RAtingSpeed < 1.5 %}fa fa-star{% elif  RAtingSpeed > 1.5 %}fa fa-star-full{% endif %}"></span>                    
+                        <span class="fa {% if RAtingSpeed == 2.5 %}fa-star-half-full {% elif RAtingSpeed < 2.5 %}fa fa-star{% elif  RAtingSpeed > 2.5 %}fa fa-star-full{% endif %}"></span>
+                        <span class="fa {% if RAtingSpeed == 3.5 %}fa-star-half-full {% elif RAtingSpeed < 3.5 %}fa fa-star{% elif  RAtingSpeed > 3.5 %}fa fa-star-full{% endif %}"></span>
+                        <span class="fa {% if RAtingSpeed == 4.5 %}fa-star-half-full {% elif RAtingSpeed < 4.5 %}fa fa-star{% elif  RAtingSpeed > 4.5 %}fa fa-star-full{% endif %}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{RAtingSpeed | stringformat:".1f"}} / 5
+                    </div>
+                    
+                    <div class="review-feedback BM">
+                        <h4>Moralistic:</h4>
+                        <span class="fa {% if RAtingMoralistic == 0.5 %}fa-star-half-full {% elif RAtingMoralistic < 0.5 %}fa fa-star{% elif  RAtingMoralistic > 0.5 %}fa fa-star-full{% endif %}"></span>                    
+                        <span class="fa {% if RAtingMoralistic == 1.5 %}fa-star-half-full {% elif RAtingMoralistic < 1.5 %}fa fa-star{% elif  RAtingMoralistic > 1.5 %}fa fa-star-full{% endif %}"></span>                    
+                        <span class="fa {% if RAtingMoralistic == 2.5 %}fa-star-half-full {% elif RAtingMoralistic < 2.5 %}fa fa-star{% elif  RAtingMoralistic > 2.5 %}fa fa-star-full{% endif %}"></span>
+                        <span class="fa {% if RAtingMoralistic == 3.5 %}fa-star-half-full {% elif RAtingMoralistic < 3.5 %}fa fa-star{% elif  RAtingMoralistic > 3.5 %}fa fa-star-full{% endif %}"></span>
+                        <span class="fa {% if RAtingMoralistic == 4.5 %}fa-star-half-full {% elif RAtingMoralistic < 4.5 %}fa fa-star{% elif  RAtingMoralistic > 4.5 %}fa fa-star-full{% endif %}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{RAtingMoralistic | stringformat:".1f"}} / 5
+                    </div>
+                    
+                    <div class="main">
+                        <p style="color:black"><i class="fa fa-envelope ">
+                            </i> {{user.user.email}}</p>
+                        <p style="color:black"><i class="fa fa-phone">
+                            </i> {{user.phone_number}}</p>
+                        <p style="color:black"><i class="fas fa-map-marker-alt fa-fw" aria-hidden="true">
+                            </i> {{user.city}}</p>
+                        <p style="color:black"><i class="fa fa-calendar-o">
+                            </i> {{user.dob}}</p>
+                        <p style="color:black"><i class="fa fa-user ">
+                            </i> {{user.gender}}
+                        </p>
+                            <div class="options">
+                                <a href="https://www.facebook.com/messages/t/{{user.face_name}}" 
+                                    style =
+                                        "
+                                        margin-top: 15px;
+                                        color: black;
+                                        padding: 11px 265px;
+                                        text-decoration: none;
+                                        font-weight: 600;
+                                        font-size: 18px;
+                                        height: 50px;
+                                        background-color: cadetblue;
+                                        border-radius: 10px;
+                                        overflow: hidden;
+                                        display: flex;
+                                        flex-direction: column;
+                                        box-shadow: 0px 0px 0px 3px rgb(0, 0, 0, 12%);
+                                        "
+                                >Message</a>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo"
+                                style =
+                                "
+                                margin-top: 15px;
+                                color: black;
+                                padding: 11px 265px;
+                                text-decoration: none;
+                                font-weight: 600;
+                                font-size: 18px;
+                                height: 50px;
+                                background-color: cadetblue;
+                                border-radius: 10px;
+                                overflow: hidden;
+                                display: flex;
+                                flex-direction: column;
+                                box-shadow: 0px 0px 0px 3px rgb(0, 0, 0, 12%);
+                                "
+                                >Rate Freelancer</button>
+                                    <div id="demo" class="collapse">
+                                        <form method="POST" class="row ccc" action="{% url 'profiles:submit_rating' rateid=user.id %}">
+                                            {% csrf_token %}
+                                            <br>
+                                            <div class="col-md-8">
+                                                <label for="experience">Your experience with the craftsman:</label>
+                                                <textarea class="form-control" id="experience" name="description" rows="3"></textarea>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="quality_rating">Rate Quality:</label>
+                                                <br>
+                                                <div class="rating">
+                                                    <input class="star star-5" id ="quality-star-5" type="radio" name="quality_rating" value="5"/>
+                                                    <label class="star star-5" for="quality-star-5"></label>
+                                                    <input class="star star-4" id ="quality-star-4" type="radio" name="quality_rating" value="4"/>
+                                                    <label class="star star-4" for="quality-star-4"></label>
+                                                    <input class="star star-3" id ="quality-star-3" type="radio" name="quality_rating" value="3"/>
+                                                    <label class="star star-3" for="quality-star-3"></label>
+                                                    <input class="star star-2" id ="quality-star-2" type="radio" name="quality_rating" value="2"/>
+                                                    <label class="star star-2" for="quality-star-2"></label>
+                                                    <input class="star star-1" id ="quality-star-1" type="radio" name="quality_rating" value="1"/>
+                                                    <label class="star star-1" for="quality-star-1"></label>
+                                                </div>
+                                            
+                                                
+                                                    <label for="speed_rating">Rate Speed:</label>
+                                                    <br>
+                                                    <div class="rating">
+                                                        <input class="star star-5" id ="speed-star-5" type="radio" name="speed_rating" value="5"/>
+                                                        <label class="star star-5" for="speed-star-5"></label>
+                                                        <input class="star star-4" id ="speed-star-4" type="radio" name="speed_rating" value="4"/>
+                                                        <label class="star star-4" for="speed-star-4"></label>
+                                                        <input class="star star-3" id ="speed-star-3" type="radio" name="speed_rating" value="3"/>
+                                                        <label class="star star-3" for="speed-star-3"></label>
+                                                        <input class="star star-2" id ="speed-star-2" type="radio" name="speed_rating" value="2"/>
+                                                        <label class="star star-2" for="speed-star-2"></label>
+                                                        <input class="star star-1" id ="speed-star-1" type="radio" name="speed_rating" value="1"/>
+                                                        <label class="star star-1" for="speed-star-1"></label>
+                                                    </div>
+                                                
+                                                
+                                                    <label for="moralistic_rating">Rate Moralistic:</label>
+                                                    <br>
+                                                    <div class="rating">
+                                                        <input class="star star-5" id ="moralistic-star-5" type="radio" name="moralistic_rating" value="5"/>
+                                                        <label class="star star-5" for="moralistic-star-5"></label>
+                                                        <input class="star star-4" id ="moralistic-star-4" type="radio" name="moralistic_rating" value="4"/>
+                                                        <label class="star star-4" for="moralistic-star-4"></label>
+                                                        <input class="star star-3" id ="moralistic-star-3" type="radio" name="moralistic_rating" value="3"/>
+                                                        <label class="star star-3" for="moralistic-star-3"></label>
+                                                        <input class="star star-2" id ="moralistic-star-2" type="radio" name="moralistic_rating" value="2"/>
+                                                        <label class="star star-2" for="moralistic-star-2"></label>
+                                                        <input class="star star-1" id ="moralistic-star-1" type="radio" name="moralistic_rating" value="1"/>
+                                                        <label class="star star-1" for="moralistic-star-1"></label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-6 offset-md-3 DDD">
+                                                <button type="submit" class="button-30">Submit or Edit Feedback</button>
+                                                {% comment %} <button type="submit" class="button-30">Edit Review</button> {% endcomment %}            
+                                            </div>
+                                        </form>
+                                    </div>
+                            </div>
+                        
+                        
+                    </div>
+                <br/>
+        <div class="us" 
+            style=
+            "margin-top: 0px;
+           padding-top: 0px;
+           padding :10px;
+           color: black;
+           font-size: 1rem;
+           border-radius: 5px;
+           border: 1px solid black;
+           height: 250px;
+           text-align: left;
+           display: grid">
+                        <h3>CV</h3>
+                        <i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size: 30px;"></i> <strong
+                            style="padding-left: 10px;"><a href="{{ profile.cv.url }}" style="color: black;text-decoration:none;
+          ">{{user.cv}}</a></strong>
+                        <hr>
+                        <h3>Certification</h3>
+                        <i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size: 30px;"></i> <strong
+                            style="padding-left: 10px;"><a href="{{ profile.file.url }}" style="color: black;
+           text-decoration:none;">{{user.file}}</a></strong>
+                    </div>
+                    <br />
+
+                    <div class="infomayar" style="margin-top: 0px;
+           padding-top: 0px;
+           padding :10px;
+           color: black;
+           font-size: 1rem;
+           border-radius: 5px;
+           border: 1px solid black;
+           height: 500px;
+           text-align: left;
+           display: grid">
+                        <h4>Education</h4>
+                        {{user.education}}
+                        <hr>
+                        <h4>Experience</h4>
+                        {{user.experience}}
+                        <hr>
+                        <h4>Language</h4>
+                        {{user.language}}
+                        <hr>
+                        <h4>Technical Skills</h4>
+                        {{user.tecskill}}
+                        <hr>
+                        <h4>Soft Skills</h4>
+                        {{user.softskill}}
+                    </div>
+
+                </div>
+            </div>
+
+        </center>
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <section style="margin-top: 250px;">
+
+        <div class="spikes"></div>
+
+
+<!--Start Footer-->
+<footer>
+    <div class="container">
+
+
+        <div class="box">
+            <h3 style="color: #fff;">Joblance</h3>
+            <br>
+            <ul class="social">
+                <li>
+                    <a href="#" class="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <p class="text">
+                A big world in a small place
+            </p>
+        </div>
+
+      
+        <div class="box">
+            <ul class="links">
+                <li>
+                    <a href="{% url 'features:members' %}">Members</a>
+                </li>
+                <li>
+                    <a href="{% url 'jobs:job_list' %}">Find a Job</a>
+                </li>
+                <li>
+                    <a href="{% url 'profiles:others' %}">Hire Now</a>
+                </li>
+                <li>
+                    <a href="{% url 'features:craftsmen' %}">Craftsmen</a>
+                </li>
+                <li>
+                    <a href="{% url 'pages:feedback' %}"><i></i>Feedback</a>
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="line">
+                <i class="fas fa-map-marker-alt fa-fw"></i>
+                <div class="info">
+                    Cairo, Egypt
+                </div>
+            </div>
+            <div class="line">
+                <i class="far fa-clock fa-fw"></i>
+                <div class="info">
+                    Joblance Team Working Hours: 08:00-04:00
+                </div>
+
+            </div>
+            <div class="line">
+                <i class="fas fa-phone-volume fa-fw"></i>
+                <div class="info">
+                    +201151261692
+                    +201095625946
+                </div>
+            </div>
+        </div>
+
+    </div>
+   <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="{% url 'features:members' %}" target="_blank">Joblance Team</a> </p>
+   
+
+</footer>
+<!--End Footer-->
+
+    </section>
+</body>
+
+</html>
+{% endblock content %}

@@ -1,0 +1,15 @@
+/* if the veiwport is equal to 340px or less*/
+
+@media only screen and (max-width: 1910px) {
+    .header .main-menu .navbar {
+        padding: 1rem;
+    }
+    .container {
+        max-width: 90%;
+    }
+
+    .site-main .highlights-area .highlights-title,
+    .site-main .about {
+        padding: 3% 4%;
+    }
+}

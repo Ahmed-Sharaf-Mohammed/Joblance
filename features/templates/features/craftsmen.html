@@ -1,0 +1,413 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Joblance
+    </title>
+    <!--Render All Elements Normally-->
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <!--main Templete-3 Css File-->
+    <link rel="stylesheet" href="{% static 'css/craftsmen.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/rating.css'%}">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> {% endcomment %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <Header>
+        <div class="container">
+            <a href="{% url 'pages:index' %}" class="logo">
+                <h2 style="color: #fff;">Joblance</h2>
+            </a>
+            <ul class="links">
+                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                <li><a href="{% url 'jobs:job_list' %}">Browse Jobs</a></li>
+                <li><a href="{% url 'profiles:others' %}">Hire Now</a></li>
+                <li>
+                    <a href="#" class="io">More</a>
+                    <!-- Start Megamenu -->
+                    <div class="mega_menu">
+                        <div class="image">
+                            <img src="{% static 'img/images/megamenu.png' %}" alt="">
+                        </div>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'jobs:add_job' %}"><i class="far fa-clipboard fa-fw"></i>Post a job</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:AboutUs' %}"><i class="far fa-chart-bar fa-fw"></i>About Us</a>
+                            </li>
+                            
+                            <li>
+                                <a href="{% url 'features:career' %}"><i class="far fa-comments fa-fw"></i>Career Advices</a>
+                             </li>
+                        </ul>
+                        <ul class="links_one">
+                            <li>
+                                <a href="{% url 'features:craftsmen' %}"><i class="far fa-building fa-fw"></i>Craftsmen</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'pages:feedback' %}"><i class="far fa-check-circle fa-fw"></i>Send
+                                    feedback</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'features:interview' %}"><i class="far fa-comments fa-fw"></i>Interview Tips</a>
+                             </li>
+                        </ul>
+                    </div>
+                    <!-- End Megamenu -->
+                </li>
+
+            </ul>
+            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                <div class="Appointment">
+                    {% if request.user.is_authenticated %}
+                    <div class="d-none d-lg-block">
+                        <a href="{% url 'registration:logout' %}" class="boxed-btn3">Logout</a>
+                    </div>
+                    {% else %}
+                    <div class="d-none d-lg-block">
+                        <a class="boxed-btn3" href="{% url 'registration:signin' %}" style="float: right;">Login</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </Header>
+    <div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <script>
+            setTimeout(() => {
+                $(".alert").alert("close");
+            }, 4000)
+        </script>
+    </div>
+
+
+    <!--Start landing-->
+    <div class="landing">
+        <div class="container">
+            <div class="text">
+                <h1>Welcome, To Craftsmen World</h1>
+                <p>We offer you craftsmen services at the highest level, with high quality and appropriate prices.</p>
+
+            </div>
+            <div class="image">
+                <img src="{% static 'img/images/landing-image.png' %}" alt="">
+            </div>
+        </div>
+        <a href="#article" class="go_down">
+        </a>
+    </div>
+    <!--End landing-->
+
+
+    <!--Start Articles-->
+    <div class="articles" id="articles">
+        <div class="title">Craftsmen</div>
+        <div class="container">
+
+
+            {% for worker in list %}
+            <div class="box">
+                <img src="{{ worker.image.url }} " alt="">
+                <div class="content">
+                    <h2>{{worker.name}}</h2>
+                    <p>{{worker.profession}}</p>
+                </div>
+
+                <div class="info">
+                    <div class="box">
+                        <div class="line">
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            <div class="info">
+                                {{worker.address}}
+                            </div>
+                        </div>
+                        <div class="line">
+                            <i class="far fa-clock fa-fw"></i>
+                            <div class="info">
+                                {{worker.working_hours}}
+                            </div>
+
+                        </div>
+                        <div class="line">
+                            <i class="fas fa-phone-volume fa-fw"></i>
+                            <div class="info">
+                                {{worker.phone_number}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% comment %} button {% endcomment %}
+                <div class="info">
+                </div>
+                <div class="d-none d-lg-block p-5">
+                    <a href="{% url 'features:craftsman_detail' craftsman_id=worker.id %}" class="boxed-btn3">Add a review</a>
+                </div>
+
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+    <div class="spikes"></div>
+    <!--End Articles-->
+
+
+
+    <div class="spikes"></div>
+
+
+    <!-- Start Testimonials-->
+
+    <div class="testimonials" id="testimonials">
+        <div class="title">
+            Top rated
+        </div>
+        <div class="container">
+            {% for item in top_rate %}
+                <div class="box">
+                    <img src="{{ item.image.url }} " alt="">
+                    <h2>{{ item.name }}</h2>
+                    <span class="job">{{ item.profession }}</span>
+                    <div class="review-feedback BQ">
+                    
+                        <span class="fa {% if item.average_review == 0.5 %}fa-star-half-full {% elif item.average_review < 0.5 %}fa fa-star{% elif  item.average_review > 0.5 %}fa fa-star-full{% endif %}"></span>                    
+                        <span class="fa {% if item.average_review == 1.5 %}fa-star-half-full {% elif item.average_review < 1.5 %}fa fa-star{% elif  item.average_review > 1.5 %}fa fa-star-full{% endif %}"></span>                    
+                        <span class="fa {% if item.average_review == 2.5 %}fa-star-half-full {% elif item.average_review < 2.5 %}fa fa-star{% elif  item.average_review > 2.5 %}fa fa-star-full{% endif %}"></span>
+                        <span class="fa {% if item.average_review == 3.5 %}fa-star-half-full {% elif item.average_review < 3.5 %}fa fa-star{% elif  item.average_review > 3.5 %}fa fa-star-full{% endif %}"></span>
+                        <span class="fa {% if item.average_review == 4.5 %}fa-star-half-full {% elif item.average_review < 4.5 %}fa fa-star{% elif  item.average_review > 4.5 %}fa fa-star-full{% endif %}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{item.average_review | stringformat:".1f"}} / 5
+                    </div>
+                    <br>
+                    <br>
+                    <p>{{ item.description }}</p>
+                </div>
+            {% endfor %}
+            {% comment %} <div class="box">
+
+                <img src="{% static 'img/images/BashoutMaker.jpg' %}" alt="">
+
+                <h2>Mohamed Ibrahim</h2>
+                <span class="job">
+                    Bashout Maker
+                </span>
+                <div class="rate">
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores et reiciendis voluptatum, amet est
+                    natus quaerat
+                    ducimus</p>
+
+
+            </div>
+            <div class="box">
+
+                <img src="{% static 'img/images/123.webp' %}" alt="">
+
+                <h2>Shady Nabil</h2>
+                <span class="job">Pottery Maker</span>
+                <div class="rate">
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores et reiciendis voluptatum, amet est
+                    natus quaerat
+                    ducimus</p>
+
+            </div>
+            <div class="box">
+
+                <img src="{% static 'img/images/PotteryMaker2.jpg' %}" alt="">
+
+                <h2>Awlad Khalil</h2>
+                <span class="job">Pottery Maker</span>
+                <div class="rate">
+                    <i class="filled  fa-regular fa-star"></i>
+                    <i class="filled  fa-regular fa-star"></i>
+                    <i class="filled  fa-regular fa-star"></i>
+                    <i class="filled  fa-regular fa-star"></i>
+                    <i class="filled  fa-regular fa-star"></i>
+
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores et reiciendis voluptatum, amet est
+                    natus quaerat
+                    ducimus</p>
+
+            </div>
+            <div class="box">
+
+                <img src="{% static 'img/images/CarpentryMaker.jpg' %}" alt="">
+
+                <h2>Ragab</h2>
+                <span class="job">Carpentry Maker</span>
+                <div class="rate">
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores et reiciendis voluptatum, amet est
+                    natus quaerat
+                    ducimus</p>
+            </div>
+            <div class="box">
+
+                <img src="{% static 'img/images/MourningMaker.jpg' %}" alt="">
+
+                <h2>Hamada</h2>
+                <span class="job">Mourning Maker</span>
+                <div class="rate">
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="filled fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores et reiciendis voluptatum, amet est
+                    natus quaerat
+                    ducimus</p>
+
+            </div> {% endcomment %}
+
+        </div>
+
+    </div>
+    <!--End Testimonials-->
+
+    <div class="spikes"></div>
+
+
+<!--Start Footer-->
+<footer>
+    <div class="container">
+
+
+        <div class="box">
+            <h3 style="color: #fff;">Joblance</h3>
+            <br>
+            <ul class="social">
+                <li>
+                    <a href="#" class="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <p class="text">
+                A big world in a small place
+            </p>
+        </div>
+
+      
+        <div class="box">
+            <ul class="links">
+                <li>
+                    <a href="{% url 'features:members' %}">Members</a>
+                </li>
+                <li>
+                    <a href="{% url 'jobs:job_list' %}">Find a Job</a>
+                </li>
+                <li>
+                    <a href="{% url 'profiles:others' %}">Hire Now</a>
+                </li>
+                <li>
+                    <a href="{% url 'features:craftsmen' %}">Craftsmen</a>
+                </li>
+                <li>
+                    <a href="{% url 'pages:feedback' %}"><i></i>Feedback</a>
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="line">
+                <i class="fas fa-map-marker-alt fa-fw"></i>
+                <div class="info">
+                    Cairo, Egypt
+                </div>
+            </div>
+            <div class="line">
+                <i class="far fa-clock fa-fw"></i>
+                <div class="info">
+                    Joblance Team Working Hours: 08:00-04:00
+                </div>
+
+            </div>
+            <div class="line">
+                <i class="fas fa-phone-volume fa-fw"></i>
+                <div class="info">
+                    +201151261692
+                    +201095625946
+                </div>
+            </div>
+        </div>
+
+    </div>
+   <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="{% url 'features:members' %}" target="_blank">Joblance Team</a> </p>
+   
+
+</footer>
+<!--End Footer-->
+
+
+</body>
+
+</html>
