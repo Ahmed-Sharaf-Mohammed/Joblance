@@ -31,7 +31,7 @@ def SignupPage(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, 'Account created successfully!')
-            return redirect('profiles:profile')
+            return redirect('profiles:edite')
         
         else:
             for field, errors in form.errors.items():
