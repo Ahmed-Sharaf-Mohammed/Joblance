@@ -86,6 +86,11 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
 
 
 def search_profiles(query):
+    query = query.strip()  # Remove leading and trailing whitespace from the query
+
+    if not query:
+        return get_all_profiles()  # Return an empty queryset when the query is empty or contains only whitespace
+
     return Profile.objects.filter(
         Q(user__username__icontains=query) | Q(email__icontains=query)
     ).annotate(
@@ -182,7 +187,7 @@ def Recommendation_view(request):
     all_searched_words = set()
 
     for word in search_words:
-        results = Profile.objects.filter(Q(user__username__icontains=word))  # Assuming search_profiles() is the function to search in the database
+        results = search_profiles(word)  # Assuming search_profiles() is the function to search in the database
         for profile in results:
             if profile != user.profile:
                 all_searched_words.add(profile)  # Append the search results to the set excluding the logged-in user's profile
