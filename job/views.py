@@ -57,7 +57,7 @@ def job_details(request, slug):
         apply_form = ApplyForm()
 
     context = {'job': job_details, 'apply_form': apply_form}
-    return render(request, 'job\job_details.html', context)
+    return render(request, 'job/job_details.html', context)
 
 
 @login_required()
@@ -90,7 +90,7 @@ def edit_job(request, id):
     else:
         form = JobForm(instance=job)
     context = {'job': job, 'form': form}
-    return render(request, 'job\edit_job.html', context)
+    return render(request, 'job/edit_job.html', context)
 
 
 @login_required()

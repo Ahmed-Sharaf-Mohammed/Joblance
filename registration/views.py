@@ -40,7 +40,7 @@ def SignupPage(request):
     else:
         form = SignupForm()
 
-    return render(request, 'registration\signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 
@@ -69,9 +69,9 @@ def LoginPage(request):
             
         messages.warning(
             request, f"Authentication failed due to either an incorrect username or password, or the non-existence of a user with the username '{username}'.")
-        return render(request, 'registration\login.html')
+        return render(request, 'registration/login.html')
     else:
-        return render(request, 'registration\login.html')
+        return render(request, 'registration/login.html')
 
 
 def LogoutPage(request):
