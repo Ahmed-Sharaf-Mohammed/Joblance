@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +37,7 @@
             <ul class="links">
                 <li><a href="{% url 'pages:home' %}">Home</a></li>
                 <li><a href="{% url 'jobs:job_list' %}">Browse Jobs</a></li>
-                <li><a href="{% url 'profiles:others' %}">Hire Now</a></li>
+                <li><a href="{% url 'profiles:others' %}"> {% trans "Hire Now" %}</a></li>
                 <li>
                     <a href="#" class="io">More</a>
                     <!-- Start Megamenu -->
@@ -96,7 +98,7 @@
                         <img src="{{ user.profile.image.url }}" alt="face">
                     </div>
                     <div class="content">
-                        <h2>{{profile.user}}</h2>
+                        <h2>{% trans "{{profile.user}}" %}</h2>
                     </div>
 
                     <div class="main">
@@ -105,7 +107,7 @@
                         <p style="color:black"><i class="fa fa-phone">
                             </i> {{profile.phone_number}}</p>
                         <p style="color:black"><i class="fas fa-map-marker-alt fa-fw" aria-hidden="true">
-                            </i> {{profile.city}}</p>
+                            </i> {% trans "{profile.city}" %}</p>
                         <p style="color:black"><i class="fa fa-calendar-o">
                             </i> {{profile.dob}}</p>
                         <p style="color:black"><i class="fa fa-user ">

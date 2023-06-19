@@ -15,8 +15,7 @@ from django.db.models import Avg, Q
 from django.urls import reverse
 
 # Create your views here.
-
- 
+from third_party.views import make_messages, translate_po_file, compile_translations 
     
 @login_required()
 def profile(request):
@@ -201,3 +200,10 @@ def Recommendation_view(request):
             combined_list.append(user_profile)  # Append unique user profiles to the list
 
     return combined_list
+
+def trans (request):
+    make_messages()
+    translate_po_file()
+    compile_translations()
+    return render(request, 'profiles/tran.html')
+  

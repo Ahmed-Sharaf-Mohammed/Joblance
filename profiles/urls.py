@@ -16,6 +16,7 @@ urlpatterns = [
     path('password-change/', ChangePasswordView.as_view(), name='password_change'),
 
     path('others/', views.others, name='others'),
+    path('trans/', views.trans, name='trans'),
     path('<int:id>', views.other, name='other'),
     path('<int:rateid>/', views.submit_rating, name='submit_rating'),
 
